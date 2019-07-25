@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>DA RFO 12 Fertilizer Calculator</title>
+
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+
+</head>
+<body>
+    <section class="d-inline-block align-top col-md-3 pl-0 pr-1 ">
+      <fieldset class="step-one border p-3 d-inline-block w-100">
+        <legend>Soil Test Recommendation</legend>
+        <label for="nitrogen" class="d-inline-block w-25">N</label><input type="text" name="strec[]" id="nitrogen"><br>
+        <label for="phos" class="d-inline-block w-25">P2O5</label><input type="text" name="strec[]" id="phos"><br>
+        <label for="potas" class="d-inline-block w-25">K2O</label><input type="text" name="strec[]" id="potas"><br>
+        <p>Kilograms per Hectare</p>
+      </fieldset>
+      <fieldset class="step-three border p-3 d-inline-block w-100">
+        <legend>Application rate and area</legend>
+        <select name="unit-weight"  id="unit-weight">
+          <option value="kilograms">Kilograms</option>
+          <option value="grams">Grams</option>
+        </select>
+
+        <label for="area" class="d-inline-block">per&nbsp;</label><input type="text" id="area" class="w-25" value="1">
+        <select name="unit-area" id="unit-area">
+          <option value="hectare">Hectare</option>
+          <option value="square meters">Square meters</option>
+        </select>
+        <p class="mt-3">Round to the nearest</p>
+          <input type="radio" id="tnt" name="rnd" value="1" checked>Tenth
+          <input type="radio" id="qrt" name="rnd" value="2">Quarter
+          <input type="radio" id="hlf" name="rnd" value="3">Half
+          <input type="radio" id="whl" name="rnd" value="4">Whole
+          <p class="mt-3">Cost per</p>
+          <select name="unit-cost"  id="unit-cost">
+            <option value="bag">Bag</option>
+            <option value="kilograms">Kilograms</option>
+          </select>
+      </fieldset>
+      <button type="button" name="calculate-button" class="calculate-button p-2 mt-2 mr-2">Calculate</button>
+      <button type="button" name="clear-button" class="clear-button p-2 mt-2 mr-2">Clear</button>
+    </section>
+
+    <section class="d-inline-block align-top col-md-3 pl-0 pr-1 h-100">
+    <fieldset class="step-two border p-3 d-inline-block w-100 h-100">
+      <legend>Select availale grades</legend>
+      <p>Choose from the list of commonly available grades</p>
+      <section class="cgradesel-con">
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="46-0-0">46-0-0 Urea<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="0-0-60">0-0-60 Potash Chloride<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="0-0-52">0-0-52 Potassium Sulphate<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="20-0-0">20-0-0 Ammonium Sulphate<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="21-0-0">21-0-0 Ammonium Sulphate<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="12-0-0">12-0-0 Ammonium Thiosulphate Solution<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="34-0-0">34-0-0 Ammonium Nitrate-(Granular)<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="34-0-0">34-0-0 Ammonium Sulphate-Urea<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="82-0-0">82-0-0 Anhydrous Ammonia<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="28-0-0">28-0-0 Urea-Ammonium Nitrate Solution<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="21-51-0">21-51-0 Mono-Ammonium Phospate<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="11-55-0">11-55-0 Mono-Ammonium Phospate<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="10-34-0">10-34-0 Ammonium Polyphospate Solution<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="16-20-0">16-20-0 Ammonium Phospate Sulphate<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="23-23-0">23-23-0 Ammonium Nitrate Phospate<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="27-14-0">27-14-0 Ammonium Nitrate Phospate<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="27-27-0">27-27-0 Urea Ammonium Phospate<br>
+      <input type="checkbox" name="cgrade[]" class="cgradesel" value="34-17-0">34-17-0 Urea Ammonium Phospate<br>
+      </section>
+      <br>
+      <p>Add custom availble grade</p>
+      <input type="text" class="acgrade"><input type="button" value="Add" class="addCustomGrade pl-1 pr-1 ml-2">
+
+      <table class="w-100 mt-2 border cgtable">
+        <thead>
+          <tr>
+          <th class="p-1">Fertilizer Grades</th>
+          <th class="p-1">Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="p-1 border"><input type="text" name="sdgrade[]" id="sdgrade[]" class="border-0 bg-white w-100" disabled></td>
+            <td class="p-1 border"><input type="text" name="cost[]" id="cost[]" class="border-0 w-100"></td>
+          </tr>
+        </tbody>
+      </table>
+    </fieldset>
+    </section>
+
+    <section class="d-inline-block align-top res-con p-0 h-100">
+    <fieldset class="step-four border p-3 d-inline-block w-100 h-100">
+      <legend>Recommendations based on available grades</legend>
+      <table class="recommended-table w-100">
+        <thead>
+          <tr>
+              <th class="p-2"></th>
+              <th class="p-2"></th>
+              <th colspan="3" class="p-2">Nutrients supplied per rate and area</th>
+              <th colspan="3" class="p-2">Nutrients surplus or deficit</th>
+              <th class="p-2"></th>
+          </tr>
+          <tr>
+              <th class="p-2">Recommendation</th>
+              <th class="p-2">Cost</th>
+              <th class="p-2">N</th>
+              <th class="p-2">P<sub>2</sub>O<sub>5</sub></th>
+              <th class="p-2">K<sub>2</sub>O</th>
+              <th class="p-2">N</th>
+              <th class="p-2">P<sub>2</sub>O<sub>5</sub></th>
+              <th class="p-2">K<sub>2</sub>O</th>
+              <th class="p-2">Score</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </fieldset>
+    </section>
+<script src="./js/jquery.min.js"></script>
+<script src='./js/bootstrap.min.js'></script>
+<!-- <script>window.$ = window.jQuery = require('./js/jquery.min.js');</script>
+<script>window.$ = window.jQuery = require('./js/bootstrap.min.js');</script> -->
+<script src="./js/script.js"></script>
+</body>
+</html>
